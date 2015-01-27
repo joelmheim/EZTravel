@@ -13,3 +13,11 @@ The app consists of:
 Installation
 ============
 The following steps are required to locally install and test this set of services.
+
+TripService
+-----------
+In the tripservice/ directory run
+  * npm install
+  * npm start
+
+Then with a browser and a rest development client go to localhost:3001/trips
