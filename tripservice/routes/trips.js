@@ -5,7 +5,10 @@ var tripProvider = require('../tripprovider-memory').TripProvider;
 /* GET trips listing. */
 router.get('/', function(req, res, next) {
   tripProvider.findAll(function (err, trips) {
-    res.send(trips);
+    if (err) {
+      res.json({message: err});
+    }
+    res.json(trips);
   });
 });
 
