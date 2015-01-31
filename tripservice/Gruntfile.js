@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'src/<%= pkg.name %>.js',
+        src: 'lib/<%= pkg.name %>.js',
         dest: 'build/<%= pkg.name %>.min.js'
       }
     },
@@ -23,9 +23,13 @@ module.exports = function (grunt) {
         },
         src: ['test/**/*.js']
       }
+    },
+    jshint: {
+      all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-mocha-test');
 

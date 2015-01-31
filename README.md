@@ -18,6 +18,6 @@ TripService
 -----------
 In the tripservice/ directory run
   * npm install
-  * npm start
+  * grunt
 
 Then with a browser and a rest development client go to localhost:3001/trips
