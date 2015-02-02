@@ -18,6 +18,18 @@ TripService
 -----------
 In the tripservice/ directory run
   * npm install
-  * grunt
+  * To run all tests
+    * grunt
+  * To start the service
+    * npm start
 
-Then with a browser and a rest development client go to localhost:3001/trips
+If you are on a local machine the service will be started on localhost port 3001 as default.
+On Cloud 9 the url will be eztravels-__yourusername__>.c9.io
+
+Then with a browser and/or a rest development client go to (GET) __url__/api/trips
+Other available routes:
+  * Create new trips (POST __url__/api/trips)
+  * Get single trip (GET __url__/api/trips/:id)
+  * Update trip (PUT __url__/api/trips/:id)
+  * Delete trip (DELETE __url__/api/trips/:id)
+
