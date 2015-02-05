@@ -10,7 +10,7 @@ router.use(function(req, res, next) {
 });
 
 /* GET trips listing. */
-router.route('/trips')
+router.route('/')
 .get(function (req, res, next) {
   tripProvider.findAll(function (err, trips) {
     if (err) {
@@ -26,7 +26,7 @@ router.route('/trips')
   });
 });
 
-router.route('/trips/:trip_id')
+router.route('/:trip_id')
 .get(function (req, res, next) {
   tripProvider.findById(req.params.trip_id, function (err, trips) {
     if (err) {
