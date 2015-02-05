@@ -1,4 +1,6 @@
-tripservice/node_modules
-tripservice/npm-debug.log
-tripservice/build
+server/node_modules
+server/npm-debug.log
+server/build
+client/node_modules
+client/bower_components
 .c9
