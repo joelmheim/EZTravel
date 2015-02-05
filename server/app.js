@@ -16,6 +16,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.set('view engine', 'ejs');
 
 app.use('/api/receipts', receipts);
 app.use('/api/trips', trips);
@@ -27,12 +28,13 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+app.get('/', function(req, res) {
+    res.render('index.html');
+});
 
-// development error handler
-// will print stacktrace
+console.log('Server running in ' + app.get('env') + ' mode.');
+
 if (app.get('env') === 'development') {
-
   app.use(express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
@@ -46,8 +48,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
 if (app.get('env') == 'production') {
 
   app.use(express.static(path.join(__dirname, '/build')));
