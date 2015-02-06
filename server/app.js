@@ -7,34 +7,21 @@ var bodyParser = require('body-parser');
 var receipts = require('./routes/receipts');
 var trips = require('./routes/trips');
 
-
 var app = express();
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.set('view engine', 'ejs');
 
 app.use('/api/receipts', receipts);
 app.use('/api/trips', trips);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-app.get('/', function(req, res) {
-    res.render('index.html');
-});
-
-console.log('Server running in ' + app.get('env') + ' mode.');
-
 if (app.get('env') === 'development') {
+  console.log('Server running in ' + app.get('env') + ' mode.');
+
   app.use(express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
@@ -49,6 +36,7 @@ if (app.get('env') === 'development') {
 }
 
 if (app.get('env') == 'production') {
+  console.log('Server running in ' + app.get('env') + ' mode.');
 
   app.use(express.static(path.join(__dirname, '/build')));
 
