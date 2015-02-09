@@ -1,7 +1,7 @@
 'use strict';
 
 var should = require('should');
-var tripProvider = require('../lib/tripprovider-memory').TripProvider;
+var tripProvider = require('../lib/tripprovider-memory');
 
 describe("TripProvider", function () {
   it ("should provide prepopulated data", function () {
