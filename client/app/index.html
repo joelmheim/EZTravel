@@ -2,9 +2,9 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>EZTravel - Making travel accounting easy.</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -14,6 +14,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="styles/carousel.css">
   </head>
   <body ng-app="clientApp">
     <!--[if lt IE 7]>
@@ -21,22 +22,20 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+    <div class="navbar-wrapper">
+      <div class="container">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
-            <a class="navbar-brand" href="#/">client</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div ng-controller="UserCtrl" class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
@@ -44,18 +43,20 @@
               <li><a ng-href="#/add">Add</a></li>
               <li><a ng-href="#/">Contact</a></li>
             </ul>
+
+            <ul class="nav navbar-nav pull-right">
+              <li><a>Welcome - {{user.displayName}}</a></li>
+            </ul>
           </div>
-        </div>
+
       </div>
     </div>
-
-    <div class="container">
     <div ng-view=""></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p><span class="glyphicon glyphicon-cloud"></span> &copy; 2015 EZTravel, Inc. &middot; EZTravel team &middot; DIS Hackathon 2015</p>
       </div>
     </div>
 
@@ -90,6 +91,8 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/add.js"></script>
+        <script src="scripts/controllers/user.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>
