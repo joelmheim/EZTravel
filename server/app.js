@@ -10,6 +10,7 @@ var session = require('express-session');
 var methodOverride = require('method-override');
 var receipts = require('./routes/receipts');
 var trips = require('./routes/trips');
+var ensureAuthenticated = require('./lib/ensure-authenticated');
 
 var app = express();
 
@@ -67,20 +68,17 @@ app.use(session({ secret: 'dis-hackathon-2015' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// To enzure authentication, put this on all request handlers
-var ensureAuthenticated = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    console.log("Is authenticated - number of users: " + users.length);
-    return next();
-  }
-  res.redirect('/login');
-};
-
 app.use('/api/receipts', receipts);
 app.use('/api/trips', trips);
 
-app.get('/api/user', ensureAuthenticated, function(req, res){
-  res.json({ user: req.user });
+app.get('/api/user', function(req, res){
+  if (req.isAuthenticated()) {
+    res.json({ email: req.user.email, displayName: req.user.displayName });
+  }
+  else {
+    res.statusCode = 401;
+    res.json({email: 'null', displayName: 'Unknown'});
+  }
 });
 
 app.get('/login',
