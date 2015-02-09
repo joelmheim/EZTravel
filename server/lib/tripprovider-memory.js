@@ -46,4 +46,4 @@ TripProvider.save([
   {tripid: '21145003', destination: 'Stavanger, Norway', start: '2015-03-17T05:00:00.000Z', end: '2015-03-19T21:00:00.000Z'}
 ], function(error, trips){});
 
-exports.TripProvider = TripProvider;
+module.exports = TripProvider;
