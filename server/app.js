@@ -16,8 +16,8 @@ var app = express();
 var config = {
   // required options
   identityMetadata: 'https://login.windows.net/3aa4a235-b6e2-48d5-9195-7fcf05b459b0/federationmetadata/2007-06/federationmetadata.xml',
-  loginCallback: 'https://eztravel-joelmheim.c9.io/login/callback/',
-  issuer: 'https://eztravel-joelmheim.c9.io/'
+  loginCallback: 'http://localhost:3000/login/callback/',
+  issuer: 'http://localhost:3000/'
 };
 
 // array to hold logged in users. State of the art.
@@ -87,6 +87,7 @@ app.get('/login',
   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
   function(req, res) {
     res.redirect('/');
+    //res.send('Authenticated: ' + JSON.stringify(req.user));
   }
 );
 
@@ -94,6 +95,7 @@ app.post('/login/callback',
   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
   function(req, res) {
     res.redirect('/');
+    //res.send('Authenticated: ' + JSON.stringify(req.user));
   }
 );
 
@@ -106,6 +108,7 @@ if (app.get('env') === 'development') {
 
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.log(err);
     res.render('error', {
       message: err.message,
       error: err
