@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var tripProvider = require('../lib/tripprovider-memory').TripProvider;
+var ensureAuthenticatedApi = require("../lib/ensure-authenticated").apiauth;
 
 // simple logger for this router's requests
 // all requests to this router will first hit this middleware
@@ -11,13 +12,13 @@ router.use(function(req, res, next) {
 
 /* GET trips listing. */
 router.route('/')
-.get(function (req, res, next) {
-  tripProvider.findAll(function (err, trips) {
-    if (err) {
-      res.json({message: err});
-    }
-    res.json(trips);
-  });
+.get(ensureAuthenticatedApi, function (req, res, next) {
+    tripProvider.findAll(function (err, trips) {
+      if (err) {
+        res.json({message: err});
+      }
+      res.json(trips);
+    });
 })
 .post(function (req, res, next) {
   tripProvider.save(req.body, function (err) {

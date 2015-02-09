@@ -10,7 +10,8 @@ var session = require('express-session');
 var methodOverride = require('method-override');
 var receipts = require('./routes/receipts');
 var trips = require('./routes/trips');
-var ensureAuthenticated = require('./lib/ensure-authenticated');
+var ensureAuthenticated = require('./lib/ensure-authenticated').webauth;
+var ensureAuthenticatedApi = require('./lib/ensure-authenticated').apiauth;
 
 var app = express();
 
@@ -71,15 +72,10 @@ app.use(passport.session());
 app.use('/api/receipts', receipts);
 app.use('/api/trips', trips);
 
-app.get('/api/user', function(req, res){
-  if (req.isAuthenticated()) {
+app.get('/api/user', ensureAuthenticatedApi, function(req, res){
     res.json({ email: req.user.email, displayName: req.user.displayName });
   }
-  else {
-    res.statusCode = 401;
-    res.json({email: 'null', displayName: 'Unknown'});
-  }
-});
+);
 
 app.get('/login',
   passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }),
@@ -100,7 +96,7 @@ app.post('/login/callback',
 if (app.get('env') === 'development') {
   console.log('Server running in ' + app.get('env') + ' mode.');
 
-  app.use(express.static(path.join(__dirname, '../client')));
+  app.use(ensureAuthenticated, express.static(path.join(__dirname, '../client')));
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
 
