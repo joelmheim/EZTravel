@@ -45,7 +45,7 @@ angular.module('clientApp')
 	// Trigger photo take
 	document.getElementById("snap").addEventListener("click", function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		$http.post('/api/receipts',  {"tripId":1,"receipt":video.toString('base64')}).
+		$http.post('/api/receipts',  {"tripId":1,"receipt":canvas.toDataURL('image/jpeg')}).
            success(function(data, status, headers, config) {
            // this callback will be called asynchronously
            // when the response is available
