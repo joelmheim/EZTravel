@@ -13,11 +13,19 @@ mongoose.connect('mongodb://'+url+'/'+dbname);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    receiptProvider.findAll(function(err, receipts) {
+        if (err) {
+            console.log(err);
+            res.status(500);
+            res.json({message: err});
+        } else {
+            res.json(receipts);
+        }
+    });
 });
 
 router.post('/', function(req, res, next) {
-        
+
     var receiptModel = receiptProvider.model(req.body);
     receiptModel.save(function (err, receipt) {
         if (err) {

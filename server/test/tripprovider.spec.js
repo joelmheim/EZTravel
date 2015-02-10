@@ -9,6 +9,5 @@ describe("TripProvider", function () {
       should(err).be.undefined;
       should(data.length).equal(4);
     });
-    //expect(tripProvider.findAll().length).to.equal(4);
   });
 });

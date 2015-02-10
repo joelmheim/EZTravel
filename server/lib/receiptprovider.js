@@ -16,14 +16,40 @@ var ReceiptProvider = (function() {
   var ReceiptModel = mongoose.model('Receipt', ReceiptSchema);
 
   return {
-    save: function (receipt, callback) {
-      ReceiptModel.insert(receipt, callback);
-
+    findAll: function(callback) {
+      ReceiptModel.find({}, callback);
     },
-    get: function (id, callback) {
-      ReceiptModel.findOne({ receiptId: id }, function(err, document) {
-        callback(err, document);
-      });     
+
+    findById: function (id, callback) {
+      ReceiptModel.findOne({ receiptId: id }, callback);
+    },
+
+    save: function (receipts, callback) {
+      var receipt = null;
+      var receiptModel = null;
+      var results = [];
+      var total = null;
+
+      if( typeof(receipts.length)=="undefined") {
+        receipts = [receipts];
+      }
+
+      total = receipts.length;
+
+      for( var i =0;i< receipts.length;i++ ) {
+        receipt = receipts[i];
+        var receiptModel = ReceiptModel(receipt);
+        receiptModel.save(function(err, savedReceipt) {
+          if (err) {
+            results.push(receipt);
+          } else {
+            results.push(savedReceipt);
+          }
+          if (--total === 0) {
+            callback(err, results);
+          }
+        });
+      }
     },
     schema: ReceiptSchema,
     model: ReceiptModel
