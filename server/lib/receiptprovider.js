@@ -7,6 +7,7 @@ var ReceiptProvider = (function() {
   var Schema = mongoose.Schema;
 
   var ReceiptSchema = new Schema({
+    user: String,
     receiptId: Number,
     tripId: Number,
     date: Date,
@@ -16,15 +17,15 @@ var ReceiptProvider = (function() {
   var ReceiptModel = mongoose.model('Receipt', ReceiptSchema);
 
   return {
-    findAll: function(callback) {
-      ReceiptModel.find({}, callback);
+    findAll: function(user, callback) {
+      ReceiptModel.find({user: user}, callback);
     },
 
-    findById: function (id, callback) {
-      ReceiptModel.findOne({ receiptId: id }, callback);
+    findById: function (user, id, callback) {
+      ReceiptModel.findOne({ user: user, receiptId: id }, callback);
     },
 
-    save: function (receipts, callback) {
+    save: function (user, receipts, callback) {
       var receipt = null;
       var receiptModel = null;
       var results = [];
@@ -38,6 +39,7 @@ var ReceiptProvider = (function() {
 
       for( var i =0;i< receipts.length;i++ ) {
         receipt = receipts[i];
+        receipt.user = user;
         var receiptModel = ReceiptModel(receipt);
         receiptModel.save(function(err, savedReceipt) {
           if (err) {
