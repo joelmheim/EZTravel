@@ -8,7 +8,7 @@
     <tr ng-repeat="receipt in receipts">
       <td>{{ receipt.receiptId }}</td>
       <td>{{ receipt.tripId }}</td>
-      <td>{{ receipt.receipt }}</td>
+      <td><img height=50 width="50" ng-src="{{ receipt.receipt }}"></td>
     </tr>
   </table>
 </div>
