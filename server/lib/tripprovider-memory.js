@@ -66,5 +66,11 @@ TripProvider.save('kflik@statoil.com', [
   {tripid: '21148002', destination: 'Stavanger, Norway', start: '2015-02-11T05:00:00.000Z', end: '2015-02-11T18:00:00.000Z'},
   {tripid: '21148003', destination: 'Stavanger, Norway', start: '2015-03-17T05:00:00.000Z', end: '2015-03-19T21:00:00.000Z'}
 ], function(error, trips){});
+TripProvider.save('kneh@statoil.com', [
+  {tripid: '21149000', destination: 'Utlandet, Norway', start: '2015-01-20T05:00:00.000Z', end: '2015-01-21T21:00:00.000Z'},
+  {tripid: '21149001', destination: 'Innlandet, Norway', start: '2015-01-29T05:00:00.000Z', end: '2015-01-29T18:00:00.000Z'},
+  {tripid: '21149002', destination: 'Baklandet, Norway', start: '2015-02-11T05:00:00.000Z', end: '2015-02-11T18:00:00.000Z'},
+  {tripid: '21149003', destination: 'Fremlandet, Norway', start: '2015-03-17T05:00:00.000Z', end: '2015-03-19T21:00:00.000Z'}
+], function(error, trips){});
 
 module.exports = TripProvider;
