@@ -5,16 +5,16 @@
       <th>Destination</th>
       <th>Start</th>
       <th>End</th>
-      <th>Another ID?</th>
       <th>Creation time</th>
+      <th>User</th>
     </tr>
     <tr ng-repeat="trip in trips">
       <td>{{ trip.tripid }}</td>
       <td>{{ trip.destination }}</td>
-      <td>{{ trip.start }}</td>
-      <td>{{ trip.end }}</td>
-      <td>{{ trip._id }}</td>
-      <td>{{ trip.created_at }}</td>
+      <td>{{ trip.start | date:'short' }}</td>
+      <td>{{ trip.end | date:'short' }}</td>
+      <td>{{ trip.created_at | date:'short' }}</td>
+      <td>{{ trip.user }}</td>
     </tr>
   </table>
 </div>
