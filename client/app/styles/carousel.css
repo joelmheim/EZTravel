@@ -130,6 +130,10 @@ body {
   .featurette-heading {
     font-size: 50px;
   }
+
+  .thumb {
+      margin-bottom: 30px;
+  }
 }
 
 @media (min-width: 992px) {
