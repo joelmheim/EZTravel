@@ -18,7 +18,7 @@ var app = express();
 var config = {
   // required options
   identityMetadata: 'https://login.windows.net/3aa4a235-b6e2-48d5-9195-7fcf05b459b0/federationmetadata/2007-06/federationmetadata.xml',
-  loginCallback: 'http://eztravel-ingvild1976-2.c9.io/login/callback/',
+  loginCallback: 'http://localhost:3000/login/callback/',
   issuer: 'http://localhost:3000/'
 };
 
