@@ -1,4 +1,4 @@
-angular.module('clientApp')
+angular.module('eztravelApp')
   .controller('UserCtrl', function ($scope, $http) {
     $('.nav a').on('click', function(){
       $('.nav').find('.active').removeClass('active');

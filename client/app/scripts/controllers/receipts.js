@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the clientApp
  */
-angular.module('clientApp').
+angular.module('eztravelApp').
 	controller('ReceiptsCtrl', function ($scope, $http) {
     	$http.get("/api/receipts").success(function(response) {$scope.receipts = response;});
     });

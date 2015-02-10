@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the clientApp
  */
-angular.module('clientApp')
+angular.module('eztravelApp')
   .controller('AddCtrl', function ($scope, $http) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
@@ -20,7 +20,7 @@ angular.module('clientApp')
 		video = document.getElementById("video"),
 		videoObj = { "video": true },
 		errBack = function(error) {
-			console.log("Video capture error: ", error.code); 
+			console.log("Video capture error: ", error.code);
 		};
 
 	// Put video listeners into place
