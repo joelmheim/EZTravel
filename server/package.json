@@ -6,7 +6,7 @@
     "start": "NODE_ENV=production nodemon ./bin/www",
     "test": "NODE_ENV=development nodemon ./bin/www"
   },
-  "main": "./bin/www",
+  "main": "./bin/www", 
   "engines": {
     "node": "0.10.x"
   },

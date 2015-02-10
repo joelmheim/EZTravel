@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('AddCtrl', function ($scope) {
+  .controller('AddCtrl', function ($scope, $http) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -45,6 +45,15 @@ angular.module('clientApp')
 	// Trigger photo take
 	document.getElementById("snap").addEventListener("click", function() {
 		context.drawImage(video, 0, 0, 640, 480);
+		$http.post('/api/receipts',  {"tripId":1,"receipt":video.toString('base64')}).
+           success(function(data, status, headers, config) {
+           // this callback will be called asynchronously
+           // when the response is available
+       }).
+       error(function(data, status, headers, config) {
+           // called asynchronously if an error occurs
+           // or server returns response with an error status.
+       });
 	});
 
   });
