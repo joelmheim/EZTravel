@@ -11,9 +11,13 @@ var err;
 
 mongoose.connect('mongodb://'+url+'/'+dbname);
 
+function getUser(req) {
+    return req.user.email.toLowerCase();
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    receiptProvider.findAll(function(err, receipts) {
+    receiptProvider.findAll(getUser(req), function(err, receipts) {
         if (err) {
             console.log(err);
             res.status(500);
@@ -26,8 +30,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    var receiptModel = receiptProvider.model(req.body);
-    receiptModel.save(function (err, receipt) {
+    receiptProvider.save(getUser(req), req.body, function (err, receipts) {
         if (err) {
             console.log(err);
             res.status(500);
