@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var tripProvider = require('../lib/tripprovider-memory').TripProvider;
+var tripProvider = require('../lib/tripprovider-memory');
 var ensureAuthenticatedApi = require("../lib/ensure-authenticated").apiauth;
 
 // simple logger for this router's requests
