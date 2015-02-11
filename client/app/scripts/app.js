@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name clientApp
+ * @name eztravelApp
  * @description
- * # clientApp
+ * # eztravelApp
  *
  * Main module of the application.
  */
 angular
-  .module('clientApp', [
+  .module('eztravelApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -33,11 +33,11 @@ angular
       })
       .when('/trips', {
         templateUrl: 'views/trips.html',
-        controller: 'TripsCtrl'      
+        controller: 'TripsCtrl'
       })
       .when('/receipts', {
         templateUrl: 'views/receipts.html',
-        controller: 'ReceiptsCtrl'      
+        controller: 'ReceiptsCtrl'
       })
       .otherwise({
         redirectTo: '/'

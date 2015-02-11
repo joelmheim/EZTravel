@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the clientApp
  */
-angular.module('clientApp')
+angular.module('eztravelApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
