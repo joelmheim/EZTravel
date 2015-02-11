@@ -97,8 +97,8 @@ if (app.get('env') === 'development') {
   console.log('Server running in ' + app.get('env') + ' mode.');
 
   app.use(ensureAuthenticated, express.static(path.join(__dirname, '../client')));
-  app.use(express.static(path.join(__dirname, '../client/.tmp')));
-  app.use(express.static(path.join(__dirname, '../client/app')));
+  app.use(ensureAuthenticated, express.static(path.join(__dirname, '../client/.tmp')));
+  app.use(ensureAuthenticated, express.static(path.join(__dirname, '../client/app')));
 
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -113,7 +113,7 @@ if (app.get('env') === 'development') {
 if (app.get('env') == 'production') {
   console.log('Server running in ' + app.get('env') + ' mode.');
 
-  app.use(express.static(path.join(__dirname, '/build')));
+  app.use(ensureAuthenticated, express.static(path.join(__dirname, '/build')));
 
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
