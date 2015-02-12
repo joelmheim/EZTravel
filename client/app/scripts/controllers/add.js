@@ -9,15 +9,10 @@
  */
 angular.module('eztravelApp')
   .controller('AddCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
     // Grab elements, create settings, etc.
-	var canvas = document.getElementById("canvas"),
+	var canvas = $("#canvas")[0],
 		context = canvas.getContext("2d"),
-		video = document.getElementById("video"),
+		video = $("#video")[0],
 		videoObj = { "video": true },
 		errBack = function(error) {
 			console.log("Video capture error: ", error.code);
@@ -43,19 +38,22 @@ angular.module('eztravelApp')
 	}
 
 	// Trigger photo take
-	document.getElementById("snap").addEventListener("click", function() {
+	$("#snap").on("click", function() {
 		context.drawImage(video, 0, 0, 640, 480);
-		$http.post('/api/receipts',  {"tripId":1,description:"Receipt saved: "+Date.now,"receipt":canvas.toDataURL('image/jpeg')}).
-           success(function(data, status, headers, config) {
-           // this callback will be called asynchronously
-           // when the response is available
-       }).
-       error(function(data, status, headers, config) {
-           // called asynchronously if an error occurs
-           // or server returns response with an error status.
-       });
-	});
-
+		$http.post('/api/receipts',  { "tripId": 1, description:"Receipt saved: "+Date.now, "receipt":canvas.toDataURL('image/jpeg')})
+      .success(function(data, status, headers, config) {
+        $scope.response = {
+          type: "success",
+          message: data.message
+        };
+      })
+      .error(function(data, status, headers, config) {
+        $scope.response = {
+          type: "failure",
+          message: data.message
+        };
+      });
   });
+});
 
 
